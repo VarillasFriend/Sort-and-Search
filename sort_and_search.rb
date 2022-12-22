@@ -59,9 +59,11 @@ print 'Searching in array...'
 print "#{checkmark.encode('utf-8')} \n"
 
 if search == 2
-    puts recursive_binary_search(array, number) != number ? 'The number is not in the array' : "#{number} is in the array"
+    puts recursive_binary_search(array,
+                                 number) != number ? 'The number is not in the array' : "#{number} is in the array"
 else
-    puts binary_search(array, number) != number ? 'The number is not in the array' : "#{number} is in the array"
+    puts binary_search(array,
+                       number) != number ? 'The number is not in the array' : "#{number} is in the array"
 end
 time_after = Time.now
 

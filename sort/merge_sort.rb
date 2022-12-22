@@ -1,40 +1,32 @@
 # frozen_string_literal: true
 
-def merge_sort(a)
-    if a.length > 2
-        first = a[0...((a.length - 1) / 2)]
-        second = a[((a.length - 1) / 2)...(a.length)]
+def merge_sort(array)
+    if array.length > 2
+        first = merge_sort array[0...array.length / 2]
+        second = merge_sort array[array.length / 2...(array.length)]
 
-        first = merge_sort(first)
-        second = merge_sort(second)
-
-        i = 0
-        j = 0
-        n = 0
-
-        while (i < first.length) || (j < second.length)
-            if (i != first.length) && (j != second.length)
-                if first[i] < second[j]
-                    a[n] = first[i]
-                    i += 1
-                else
-                    a[n] = second[j]
-                    j += 1
-                end
-            elsif i != first.length
-                a[n] = first[i]
-                i += 1
-            else
-                a[n] = second[j]
-                j += 1
-            end
-            n += 1
-        end
-    elsif (a.length == 2) && (a[0] > a[1])
-        a_1 = a[1]
-        a[1] = a[0]
-        a[0] = a_1
+        return merge(first, second)
+    elsif array.length == 2 && array[0] > array[1]
+        return array[1], array[0]
     end
 
-    a
+    array
+end
+
+def merge(first, second)
+    array = []
+    i = 0
+    j = 0
+
+    until i == first.length && j == second.length
+        array << if i != first.length && first[i] < (second[j] || first[i] + 1)
+                     i += 1
+                     first[i - 1]
+                 else
+                     j += 1
+                     second[j - 1]
+                 end
+    end
+
+    array
 end
